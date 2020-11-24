@@ -11,8 +11,8 @@ class HomeController extends FrontController
 {
     public function index()
     {       
-        // $keySearch = 'metallica';
         // $minutesPerDay = [250, 10, 140, 50, 50, 80, 90];
+        // $keySearch = 'metallica';
         
         $minutesPerDay = (isset($_GET['days'])? $_GET['days'] : []);
         $keySearch = (isset($_GET['palavra_chave'])? $_GET['palavra_chave'] : '');
@@ -25,11 +25,11 @@ class HomeController extends FrontController
         $totalDays = 0;
         
         if(count($minutesPerDay) > 0 && $keySearch != ""){
-            $videosResponse = (new APIYoutube())->simulaResponse();
-            // $videosResponse = (new APIYoutube())->searchVideosByTherm($keySearch, $maxVideosList);
+            $videosResponse = (new APIYoutube())->searchVideosByTherm($keySearch, $maxVideosList);
 
             $modelVideos = new VideosYoutube($videosResponse, $minutesPerDay);
-            $modelVideos->init();
+            
+            $modelVideos->init($videosResponse);
             $videosPerDay = $modelVideos->getListVideos();
             $mostFrequentWords = $modelVideos->getMostFrequentWords();
             $totalDays = $modelVideos->getTotaldays();
@@ -40,7 +40,8 @@ class HomeController extends FrontController
 
     public function depura($array){
         echo '<pre>';
-        print_r($array);
+        echo json_encode($array);
         echo '</pre>';
+        die();
     }
 }

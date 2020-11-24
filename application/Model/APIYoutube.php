@@ -11,19 +11,19 @@ class APIYoutube {
 
     private $DEVELOPER_KEY = 'AIzaSyCq8iYCeZKk-S5yD9MgtTyqOxjf6Nax3eU';
 
-    public function searchVideosByTherm($serachTerm, $maxResults)
+    public function searchVideosByTherm($searchTerm, $maxResults)
     {           
         $clientGoogle = new Google_Client();
         $clientGoogle->setDeveloperKey($this->DEVELOPER_KEY);
         $youtube = new Google_Service_YouTube($clientGoogle);
         $error = "";
 
-        if (isset($serachTerm) && isset($maxResults)) {
+        if (isset($searchTerm) && isset($maxResults)) {
             try {
                 
                 $searchResponse = $youtube->search->listSearch('id,snippet', array(
                     'type' => 'video',
-                    'q' => $serachTerm,
+                    'q' => $searchTerm,
                     'maxResults' => $maxResults,
                 ));
             
@@ -443,6 +443,171 @@ class APIYoutube {
               "resultsPerPage": 3
             }
           }';
+
+          $str = '{
+            "etag": "krO-hY46x2FPi6qm1egtAO49ErE",
+            "eventId": null,
+            "kind": "youtube#videoListResponse",
+            "nextPageToken": null,
+            "prevPageToken": null,
+            "visitorId": null,
+            "items": [
+                {
+         "etag":"LqtqoFfaJ2QwLrsrZzUO_vgvD-w",
+         "id":"iT6vqeL-ysI",
+         "kind":"youtube#video",
+         "snippet":{
+            "categoryId":"10",
+            "channelId":"UCv5emLGrYcQAmbpeFVlzjdg",
+            "channelTitle":"Warner Records Vault",
+            "defaultAudioLanguage":null,
+            "defaultLanguage":null,
+            "description":"",
+            "liveBroadcastContent":"none",
+            "publishedAt":"2009-10-27T01:57:41Z",
+            "tags":[
+               "Metallica",
+               "One",
+               "Rock",
+               "Metallica - One",
+               "Music",
+               "Lyrics",
+               "Metal",
+               "Warner Records",
+               "Warner Music",
+               "Warner Music Group",
+               "Warner Records Vault",
+               "Warner",
+               "Pop",
+               "Hip Hop",
+               "Classics",
+               "Playlist",
+               "1990\u2019s",
+               "2000\u2019s",
+               "Warner Vault"
+            ],
+            "title":"Metallica - One (Official Music Video)",
+            "thumbnails":{
+               "default":{
+                  "height":90,
+                  "url":"https:\/\/i.ytimg.com\/vi\/iT6vqeL-ysI\/default.jpg",
+                  "width":120
+               },
+               "medium":{
+                  "height":180,
+                  "url":"https:\/\/i.ytimg.com\/vi\/iT6vqeL-ysI\/mqdefault.jpg",
+                  "width":320
+               },
+               "high":{
+                  "height":360,
+                  "url":"https:\/\/i.ytimg.com\/vi\/iT6vqeL-ysI\/hqdefault.jpg",
+                  "width":480
+               },
+               "standard":{
+                  "height":480,
+                  "url":"https:\/\/i.ytimg.com\/vi\/iT6vqeL-ysI\/sddefault.jpg",
+                  "width":640
+               },
+               "maxres":{
+                  "height":720,
+                  "url":"https:\/\/i.ytimg.com\/vi\/iT6vqeL-ysI\/maxresdefault.jpg",
+                  "width":1280
+               }
+            },
+            "localized":{
+               "description":"",
+               "title":"Metallica - One (Official Music Video)"
+            }
+         },
+         "contentDetails":{
+            "caption":"false",
+            "definition":"sd",
+            "dimension":"2d",
+            "duration":"PT7M45S",
+            "hasCustomThumbnail":null,
+            "licensedContent":false,
+            "projection":"rectangular",
+            "contentRating":{
+               "acbRating":null,
+               "agcomRating":null,
+               "anatelRating":null,
+               "bbfcRating":null,
+               "bfvcRating":null,
+               "bmukkRating":null,
+               "catvRating":null,
+               "catvfrRating":null,
+               "cbfcRating":null,
+               "cccRating":null,
+               "cceRating":null,
+               "chfilmRating":null,
+               "chvrsRating":null,
+               "cicfRating":null,
+               "cnaRating":null,
+               "cncRating":null,
+               "csaRating":null,
+               "cscfRating":null,
+               "czfilmRating":null,
+               "djctqRating":null,
+               "djctqRatingReasons":null,
+               "ecbmctRating":null,
+               "eefilmRating":null,
+               "egfilmRating":null,
+               "eirinRating":null,
+               "fcbmRating":null,
+               "fcoRating":null,
+               "fmocRating":null,
+               "fpbRating":null,
+               "fpbRatingReasons":null,
+               "fskRating":null,
+               "grfilmRating":null,
+               "icaaRating":null,
+               "ifcoRating":null,
+               "ilfilmRating":null,
+               "incaaRating":null,
+               "kfcbRating":null,
+               "kijkwijzerRating":null,
+               "kmrbRating":null,
+               "lsfRating":null,
+               "mccaaRating":null,
+               "mccypRating":null,
+               "mcstRating":null,
+               "mdaRating":null,
+               "medietilsynetRating":null,
+               "mekuRating":null,
+               "menaMpaaRating":null,
+               "mibacRating":null,
+               "mocRating":null,
+               "moctwRating":null,
+               "mpaaRating":null,
+               "mpaatRating":null,
+               "mtrcbRating":null,
+               "nbcRating":null,
+               "nbcplRating":null,
+               "nfrcRating":null,
+               "nfvcbRating":null,
+               "nkclvRating":null,
+               "nmcRating":null,
+               "oflcRating":null,
+               "pefilmRating":null,
+               "rcnofRating":null,
+               "resorteviolenciaRating":null,
+               "rtcRating":null,
+               "rteRating":null,
+               "russiaRating":null,
+               "skfilmRating":null,
+               "smaisRating":null,
+               "smsaRating":null,
+               "tvpgRating":null,
+               "ytRating":null
+            }
+         }
+      }
+            ],
+            "pageInfo": {
+                "resultsPerPage": 10,
+                "totalResults": 10
+            }
+        }';
 
         return json_decode($str, true);
         // return [];

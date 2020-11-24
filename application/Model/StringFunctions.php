@@ -8,10 +8,8 @@ class StringFunctions
         // $words = array_count_values(str_word_count($string, 1));
         // var_dump($string);
 
+        // $temp = preg_replace('/[^A-Za-z0-9]/', ' ', $temp);
         $temp = preg_replace( "/<br>|\n|\-/", "", $string );
-        $temp = preg_replace('/[^A-Za-z0-9]/', ' ', $temp);
-
-        // $temp = preg_replace( "/(|)|,/", "", $temp );
 
         $words2 = explode(" ", $temp);
         $result = array_combine($words2, array_fill(0, count($words2), 0));

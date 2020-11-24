@@ -15,7 +15,7 @@ class VideosYoutube {
 
     public function __construct($videos, $minutesPerDay)
     {
-        $this->videosResponse = $videos;
+        $this->videosResponse = clone $videos;
         $this->minutesPerDay = $minutesPerDay;
     }
 
@@ -27,35 +27,38 @@ class VideosYoutube {
     private function removeLongestsVideos()
     {       
         $majorTimeDay = max($this->minutesPerDay);
-        
+        $listVideos = [];
+
         foreach($this->videosResponse['items'] as $key => $videoResult){
             $minutesVideo = (new Time())->ISO8601ToMinutes($videoResult['contentDetails']['duration']);
-         
-            if($majorTimeDay < $minutesVideo){
-                unset($this->videosResponse['items'][$key]);
+            
+            if($majorTimeDay >= $minutesVideo){
+                $listVideos[] = clone $videoResult;
             }
         }
+        $this->videosResponse = $listVideos;
     }
 
     private function mountDayList(){
         $descriptionStr = '';
-        
-        while(count($this->videosResponse['items']) > 0){
+        $listVideos = [];
+
+        while(count($this->videosResponse) != count($listVideos)){
             foreach($this->minutesPerDay as $minutes){
 
+                $accDay = 0;
                 $this->dayCount++;
 
                 $this->videosPerDay[$this->dayCount]["day"] = $this->dayCount;
                 $this->videosPerDay[$this->dayCount]["minutesLimitDay"] = $minutes;
-                $accDay = 0;
                 $this->videosPerDay[$this->dayCount]["videos"] = [];
                 $this->videosPerDay[$this->dayCount]["totalVideosMinutes"] = 0;
 
-                foreach($this->videosResponse['items'] as $indexVideos => $videoResult){
+                foreach($this->videosResponse as $indexVideos => $videoResult){
                     $minutesVideo = (new Time())->ISO8601ToMinutes($videoResult['contentDetails']['duration']);
 
                     if(($accDay + $minutesVideo) <= $minutes){
-                        $this->videosPerDay[$this->dayCount]["videos"][] = $videoResult;
+                        $this->videosPerDay[$this->dayCount]["videos"][] = clone $videoResult;
                         $accDay += $minutesVideo;
 
                         $this->videosPerDay[$this->dayCount]["totalVideosMinutes"] = round($accDay, 2);
@@ -65,9 +68,9 @@ class VideosYoutube {
                         $descriptionStr .= strtolower($videoResult['snippet']['description']);
                         $descriptionStr .= " ";
 
-                        unset($this->videosResponse['items'][$indexVideos]);
+                        $listVideos[] = clone $videoResult;
 
-                        if(count($this->videosResponse['items']) == 0){
+                        if(count($this->videosResponse) == count($listVideos)){
                             break 2;
                         }
 
@@ -78,6 +81,7 @@ class VideosYoutube {
                 }
             }
         }
+        // $this->videosResponse = $listVideos;
         $this->mostFrequentWords = (new StringFunctions())->showMostUsedWords($descriptionStr);
     }
 
