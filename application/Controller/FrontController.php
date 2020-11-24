@@ -19,15 +19,6 @@ class FrontController
         $this->addStyle(URL . "css/" . VERSAO . "/skin-blue.min.css");
         $this->addStyle(URL . "css/" . VERSAO . "/bootstrap-datepicker.min.css");
         $this->addStyle(URL . "css/" . VERSAO . "/style.css");
-        
-        $this->addScript(URL . "js/" . VERSAO . "/jquery.min.js");
-        $this->addScript(URL . "js/" . VERSAO . "/select2.min.js");
-        $this->addScript(URL . "js/" . VERSAO . "/bootstrap.min.js");
-        $this->addScript(URL . "js/" . VERSAO . "/adminlte.min.js");
-        $this->addScript(URL . "js/" . VERSAO . "/bootstrap-datepicker.min.js");
-        $this->addScript(URL . "js/" . VERSAO . "/bootstrap-datepicker.pt-BR.min.js");
-        $this->addScript(URL . "js/" . VERSAO . "/jquery.maskmoney.min.js");
-        $this->addScript(URL . "js/" . VERSAO . "/jquery.inputmask.min.js");
     }
 
     public function getStyles()

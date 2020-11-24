@@ -11,13 +11,15 @@ class HomeController extends FrontController
 {
     public function index()
     {       
+        //SETAR A QUANTIDADE DE VÍDEOS AQUI
+        $maxVideosList = 20;
+
         // $minutesPerDay = [250, 10, 140, 50, 50, 80, 90];
         // $keySearch = 'metallica';
         
         $minutesPerDay = (isset($_GET['days'])? $_GET['days'] : []);
         $keySearch = (isset($_GET['palavra_chave'])? $_GET['palavra_chave'] : '');
         
-        $maxVideosList = 10;
         $weekDaysFields = 7;
 
         $videosPerDay = []; 
@@ -36,12 +38,5 @@ class HomeController extends FrontController
         }
         
         require APP . 'view/home/index.php';
-    }
-
-    public function depura($array){
-        echo '<pre>';
-        echo json_encode($array);
-        echo '</pre>';
-        die();
     }
 }

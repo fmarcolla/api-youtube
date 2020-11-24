@@ -36,6 +36,7 @@ class VideosYoutube {
                 $listVideos[] = clone $videoResult;
             }
         }
+        $this->videosResponse = [];
         $this->videosResponse = $listVideos;
     }
 
